@@ -1,0 +1,20 @@
+<!--<div class="play-container">
+    <p>
+        <input type="text" [(ngModel)]="name"><br>
+        <strong>You said: </strong> {{ name }}
+    </p>
+</div>
+
+ <a class="site" href="{{ brew.website_url }}">site</a> from brewereies sites
+-->
+<h1>Lista de empleados</h1>
+
+<ul *ngIf="emps">     
+  <li *ngFor="let ems of emps">
+    <p class="name">{{ ems.id }}</p>
+    <p class="country">{{ ems.nombre }}</p>
+    <p class="name">{{ ems.puesto }}</p>
+    <p class="country">{{ ems.created_at }}</p>
+   
+  </li>
+</ul>

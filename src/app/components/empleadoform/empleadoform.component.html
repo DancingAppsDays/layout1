@@ -1,0 +1,27 @@
+<!--<p>empleadoform works!</p>
+<div class="form-container">
+    <p>
+        <input type="text" [(ngModel)]="name"><br>
+        <strong>Nombre: </strong> {{ name }}
+    </p>
+    <p>
+        <input type="text" [(ngModel)]="Puesto"><br>
+        <strong>Puesto: </strong> {{ Puesto }}
+    </p>
+
+[(ngModel)]="name"  [ngModelOptions]="{standalone: true}"
+
+</div>-->
+
+<form [formGroup] ="empForm"  (ngSubmit)="onSubmit(empForm.value)" >
+    <p>                                                 <!--//to avoid formcontrol error-->
+        <input type="text" name="nombre" class="form-control" formControlName="nombre"  >
+        <strong>Nombre: </strong> 
+    </p>
+    <p>
+        <input type="text" name="puesto" class="form-control" formControlName="puesto"  >
+        <strong>Puesto: </strong> 
+    </p>
+<button class ="button" type ="submit">Registrar</button>
+
+</form>
