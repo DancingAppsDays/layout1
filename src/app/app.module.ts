@@ -12,7 +12,10 @@ import { EmpleadoComponent } from './components/empleado/empleado.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmpleadoformComponent } from './components/empleadoform/empleadoform.component';
-import { FileUploadComponent } from './components/file-upload/file-upload.component';  //added for 2bingin
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { EquiposComponent } from './components/equipos/equipos.component';
+import { ListequiposComponent } from './components/listequipos/listequipos.component';
+import { EmpformeditComponent } from './components/empformedit/empformedit.component';  //added for 2bingin
 
 @NgModule({
   declarations: [
@@ -21,6 +24,9 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
     EmpleadoComponent,
     EmpleadoformComponent,
     FileUploadComponent,
+    EquiposComponent,
+    ListequiposComponent,
+    EmpformeditComponent,
     
   ],
   imports: [

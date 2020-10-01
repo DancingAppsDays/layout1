@@ -10,12 +10,12 @@ import{FormBuilder} from '@angular/forms';
 })
 export class EmpleadoformComponent implements OnInit {
 
-  empForm;
+  empForm;//formgroup
   //name: string;       //form builder didnt need thiss.....better use model to form
   //puesto: string; //used in {{}} interpolation of template
 
   url: string = "http://127.0.0.1:8000/api/Empleado/";   
-  url2: string = "http://127.0.0.1:8000/api/Maquina/"
+  url2: string = "http://127.0.0.1:8000/api/Maquina/";
 
 
   constructor(    private formBuilder: FormBuilder , private http :HttpClient ) {
@@ -32,11 +32,12 @@ export class EmpleadoformComponent implements OnInit {
   onSubmit(customerData)
     {console.log("submitted");
     this.empForm.reset();
-     console.log(customerData);
+     //console.log(customerData);
   this.postempleado(customerData);
 //this.getEmpleado(2);//justworked
      //this.getmachinas();
   }
+
 
    getmachinas()
    {

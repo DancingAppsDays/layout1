@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
   url2: string = "http://127.0.0.1:8000/api/Empleado/";
+  url3: string = "http://127.0.0.1:8000/api/Maquina/";
   constructor(private http: HttpClient) { }
 
   method1()
@@ -20,5 +21,10 @@ export class HttpService {
     //return this.http.get('127.0.0.1:8000/api/Maquina');
     return this.http.get(this.url2);
   }
-  
+  getequips()
+  {
+    return this.http.get(this.url3);
+
+
+  }
 }

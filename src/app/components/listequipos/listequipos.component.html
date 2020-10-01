@@ -1,0 +1,33 @@
+<h1>Lista de empleados</h1>
+<!--
+<ul *ngIf="eqs">     
+  <li *ngFor="let ems of eqs">
+    <p class="name">{{ ems.id }}</p>
+    <p class="country">{{ ems.nombre }}</p>
+    <p class="name">{{ ems.puesto }}</p>
+    <p class="country">{{ ems.lastcheck }}</p>
+   
+  </li>
+</ul>
+-->
+
+<table class="table" *ngIf="eqs">
+  <thead>
+    <tr>
+      <th scope="col">item</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Puesto</th>
+      <th scope="col">lastcheck</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ems of eqs">
+      <th scope="row">{{ ems.id }}</th>
+      <td>{{ ems.nombre }}</td>
+      <td>{{ ems.puesto }}</td>
+      <td>{{ ems.lastcheck }}</td>
+      <td> <button type="button" class="btn btn-primary" title="Editar" (click)="editEquipo(ems)">Editar</button> </td>
+    </tr>
+  </tbody>
+</table>

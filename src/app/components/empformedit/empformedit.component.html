@@ -1,0 +1,13 @@
+
+<form [formGroup] ="empForm"  (ngSubmit)="onSubmit(empForm.value)" >
+    <p>                                                 <!--//to avoid formcontrol error-->
+        <input type="text" name="nombre" class="form-control" formControlName="nombre"  >
+        <strong>Nombre: </strong> 
+    </p>
+    <p>
+        <input type="text" name="puesto" class="form-control" formControlName="puesto"  >
+        <strong>Puesto: </strong> 
+    </p>
+<button class ="button" type ="submit">Registrar</button>
+
+</form>
