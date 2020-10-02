@@ -29,7 +29,7 @@ export class ListequiposComponent implements OnInit {
 
   editEquipo(equipo: any){
     console.log(equipo)
-    this.router.navigate(['empform'],{
+    this.router.navigate(['equipos'],{
       queryParams:{
         id:equipo.id,
         nombre:equipo.nombre,

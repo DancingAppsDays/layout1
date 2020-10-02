@@ -4,6 +4,7 @@ import { HttpService } from '../http.service';
 //import {Observable} from  'rxjs/Observable';
 
 import {map} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,16 +14,18 @@ import {map} from 'rxjs/operators';
 })
 export class List1Component implements OnInit {
 
-  constructor(private _http:  HttpService ) { }
+  
+  constructor(private _http:  HttpService,private router:Router ) { }
 
    //empsarray:any = [];
   ngOnInit(): void {
 
-    //this._http.method1();´
-    //this._http.getempleados().pipe(map(res => res.data)).subscribe(data =>
+    
+
+    
     this._http.getempleados().subscribe(result => 
       
-          //how to acces data from result.data ????
+        
 
       {//this.emps =result.json();
         this.emps = result;//data;
@@ -33,6 +36,19 @@ export class List1Component implements OnInit {
         console.log(this.emps);
       });
   }
+  editEmps(equipo: any){
+    console.log(equipo)
+    this.router.navigate(['empform'],{
+      queryParams:{
+        id:equipo.id,
+        nombre:equipo.nombre,
+        puesto:equipo.puesto
+      }
+    })
+
+  }
+
+
   id: string='' ;
   created_at: string ='';
   name: string ='';

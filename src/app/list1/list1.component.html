@@ -8,7 +8,7 @@
  <a class="site" href="{{ brew.website_url }}">site</a> from brewereies sites
 -->
 <h1>Lista de empleados</h1>
-
+<!--
 <ul *ngIf="emps">     
   <li *ngFor="let ems of emps">
     <p class="name">{{ ems.id }}</p>
@@ -17,4 +17,23 @@
     <p class="country">{{ ems.created_at }}</p>
    
   </li>
-</ul>
+</ul>--><table class="table" *ngIf="emps">
+  <thead>
+    <tr>
+      <th scope="col">item</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Puesto</th>
+      <th scope="col">Turno</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ems of emps">
+      <th scope="row">{{ ems.id }}</th>
+      <td>{{ ems.nombre }}</td>
+      <td>{{ ems.puesto }}</td>
+      <td>{{ ems.created_at }}</td>
+      <td> <button type="button" class="btn btn-primary" title="Editar" (click)="editEmps(ems)">Editar</button> </td>
+    </tr>
+  </tbody>
+</table>

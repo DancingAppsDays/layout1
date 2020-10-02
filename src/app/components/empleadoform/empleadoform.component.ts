@@ -30,9 +30,14 @@ export class EmpleadoformComponent implements OnInit {
       //this.stuff = this.cart.clearCart();
   }
   onSubmit(customerData)
-    {console.log("submitted");
+    {//console.log("submitted");
     this.empForm.reset();
      //console.log(customerData);
+     
+     //check if edit or new
+      //if(this.) not here more like in edit
+
+
   this.postempleado(customerData);
 //this.getEmpleado(2);//justworked
      //this.getmachinas();

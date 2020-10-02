@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import {List1Component} from './list1/list1.component';   //addeddd manual
+import {List1Component} from './list1/list1.component';   //addeddd manual//modified manual
 import {EmpleadoformComponent} from './components/empleadoform/empleadoform.component';
 import { FileUploadComponent } from './components/file-upload/file-upload.component';
 import { EquiposComponent } from './components/equipos/equipos.component';

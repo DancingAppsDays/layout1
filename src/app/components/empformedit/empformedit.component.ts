@@ -25,7 +25,7 @@ export class EmpformeditComponent implements OnInit {
   equipo:any;
 
   constructor(    private formBuilder: FormBuilder , private http :HttpClient, private router2: ActivatedRoute ) {
-    this.empForm = this.formBuilder.group({nombre: '', puesto: ''})
+    this.empForm = this.formBuilder.group({id: '',nombre: '', puesto: ''})
     //console.log("after firn build");
 
    }
@@ -36,6 +36,10 @@ export class EmpformeditComponent implements OnInit {
         console.log(params)
         console.log(params.id)
         this.equipo=params
+        this.empForm.get('id').setValue(this.equipo.id)
+        this.empForm.get('nombre').setValue(this.equipo.nombre)
+        this.empForm.get('puesto').setValue(this.equipo.puesto)
+        console.log(this.equipo.id)
       })
   }
 
@@ -44,13 +48,29 @@ export class EmpformeditComponent implements OnInit {
   onSubmit(customerData)
   {console.log("submitted");
   this.empForm.reset();
-   
-this.postempleado(customerData);
-
+                                      //if this equipo not come from list, new, else patch
+  if(this.equipo.id !=undefined){     
+      console.log("not null patch no post");
+      this.putempleado(customerData,Number(this.equipo.id))
+  }else{
+    this.postempleado(customerData);
+  }
+  //this.equipo.id =undefined;         //to prevent over overwrite??
 }
 postempleado(customerData)
   {
     this.http.post(this.url,customerData).subscribe(data =>
+      {console.log(data);}, 
+      error =>{console.log(error);}
+      );
+  }
+
+  putempleado(customerData,idd: number)
+  {  
+    console.log(idd); 
+    
+    //lara dont allow put/patch, better fix in store
+    this.http.post(this.url+idd, customerData).subscribe(data =>
       {console.log(data);}, 
       error =>{console.log(error);}
       );
