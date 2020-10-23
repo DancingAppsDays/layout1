@@ -14,26 +14,40 @@ import { Router } from '@angular/router';
 })
 export class List1Component implements OnInit {
 
+  sucessdata:any;
+  //emps:any;
   
   constructor(private _http:  HttpService,private router:Router ) { }
 
    //empsarray:any = [];
   ngOnInit(): void {
 
+    //const token: string = localStorage.getItem('Token');
+    //window.alert(token);
     
+    this._http.getempleados().subscribe(
+      
+     
 
-    
-    this._http.getempleados().subscribe(result => 
+       
+      result => 
       
         
 
-      {//this.emps =result.json();
-        this.emps = result;//data;
+      { //this.sucessdata = result;
+
+        //if(this.sucessdata['status'] == "success"){
+
+     // window.alert("Datos recuperados  con éxito con sesion");
+        
+        //this.emps =result.json();
+        this.emps = result;//this.sucessdata;//data;
         /*data.forEach(item => {
           this.emps.next(item);
         });*/
         //this.emps = this.empsarray.json();
-        console.log(this.emps);
+        console.log(this.emps);//}
+        //else  window.alert(this.sucessdata['data'] + "->  Error sesion no iniciada");
       });
   }
   editEmps(equipo: any){
@@ -47,6 +61,16 @@ export class List1Component implements OnInit {
     })
 
   }
+
+  gototurnos(equipo:any){
+    this.router.navigate(['turnosform'],{
+      queryParams:{
+        id:equipo.id,
+        nombre:equipo.nombre
+      }
+
+  })
+}
 
 
   id: string='' ;

@@ -13,7 +13,7 @@ export class EquiposComponent implements OnInit {
   equipForm: FormGroup;
  equipo: any;
  
-  url: string = "http://127.0.0.1:8000/api/Maquina/";
+  url: string = "https://novatechdpw2.000webhostapp.com/api/Maquina/";//"http://127.0.0.1:8000/api/Maquina/";
 
   constructor( private formBuilder: FormBuilder , private http :HttpClient , private router2: ActivatedRoute) {
 
@@ -49,8 +49,10 @@ export class EquiposComponent implements OnInit {
 postequip(customerData)
   {
     this.http.post(this.url,customerData).subscribe(data =>
-      {console.log(data);}, 
-      error =>{console.log(error);}
+      {console.log(data);
+        window.alert("Elemento agregado correctamente")}, 
+      error =>{console.log(error);
+        window.alert("Error,consulte consola")}
       );
   }
 
@@ -60,8 +62,10 @@ postequip(customerData)
     
     //lara dont allow put/patch, better fix in store
     this.http.post(this.url+idd, customerData).subscribe(data =>
-      {console.log(data);}, 
-      error =>{console.log(error);}
+      {console.log(data);
+        window.alert("Elemento modificado correctamente")}, 
+      error =>{console.log(error);
+        window.alert("Error,consulte consola")}
       );
   }
 

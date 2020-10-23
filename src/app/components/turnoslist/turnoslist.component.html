@@ -1,0 +1,24 @@
+<p>Turnos de:</p>
+
+<p>Nombre: {{ querid.nombre }}</p>
+<p>IDEmpleado: {{ querid.id }}</p>
+
+<table class="table" *ngIf="eqs">
+    <thead>
+      <tr>
+        <th scope="col">IDempleado</th>
+        <th scope="col">Nombre empleado</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Turno dia</th>
+        <th scope="col">Area</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ems of eqs">
+        <th scope="row">{{ ems.idempleado }}</th>
+        <td>{{ querid.nombre }}</td>
+        <td>{{ ems.fecha }}</td>
+        <td>{{ ems.area }}</td>
+       </tr>
+    </tbody>
+  </table>

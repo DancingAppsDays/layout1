@@ -1,0 +1,86 @@
+
+
+<form [formGroup]="myForm" [hidden]="success" #UsuarioForm="ngForm" (ngSubmit)="onGuardarUsuario(myForm.value)">
+
+  <div class="form-group row">
+    <div class="col-sm text-center">
+      <h4 class="d-block" style="background-color: #34495E; color:#fff; margin: 15px;">Agregar Usuario</h4>
+    </div>
+  </div>
+
+    <div class="form-group row">
+        <label name="fecha" class="col-sm-1 col-form-label">Fecha:</label>
+        <div class="input-group col-sm-3">
+          <input formControlName="fecha" type="date" class="form-control" placeholder="DD/MM/AAAA" value="{{today | date:'yyyy-MM-dd'}}">
+          <div class="input-group-prepend">
+            <span class="input-group-text fa fa-calendar-o" id="inputGroupPrepend2"></span>
+          </div>
+        </div>
+        <label name="hora" class="col-sm-1 col-form-label">Hora:</label>
+        <div class="input-group col-sm-3">
+            <input formControlName="hora" type="time" class="form-control" placeholder="HH:MM:SS" value="{{today | date:'hh:mm'}}">
+          <div class="input-group-prepend">
+            <span class="input-group-text fa fa-clock-o" id="inputGroupPrepend2"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+          <label name="nombre2" class="col-sm-1 col-form-label">Nombre:</label>
+          <div class="col-sm-7">
+            <input type="text" class="form-control" formControlName="name" placeholder="Nombre completo" ng-pattern ="/^[a-zA-Z\s]*$/">
+          </div>
+          
+          <div class="alert alert-danger" role="alert" *ngIf="myForm.get('name').invalid && myForm.get('name').touched">
+              ¡Nombre no valido!
+          </div>
+      </div>
+
+      <div class="form-group row">
+          <label name="telelabel" class="col-sm-1 col-form-label">Teléfono:</label>
+          <div class="input-group col-sm-7">
+            <input type="text" class="form-control" maxlength="10" formControlName="telefon" placeholder="000-000-0000" value="">
+            <div class="input-group-prepend">
+              <span class="input-group-text fa fa-phone" id="inputGroupPrepend2"></span>
+            </div>
+          </div> 
+          <div class="alert alert-danger" role="alert" *ngIf="myForm.get('telefon').invalid && myForm.get('telefon').touched">
+              ¡Teléfono no valido!
+          </div>
+      </div>
+      <div class="form-group row">
+        <label name="passwo" class="col-sm-1 col-form-label">Password:</label>
+        <div class="input-group col-sm-7">
+          <input type="text" class="form-control" maxlength="10" formControlName="password" placeholder="***" value="">
+          <div class="input-group-prepend">
+            <span class="input-group-text fa fa-phone" id="inputGroupPrepend2"></span>
+          </div>
+        </div> 
+        <div class="alert alert-danger" role="alert" *ngIf="myForm.get('password').invalid && myForm.get('password').touched">
+            ¡Password no valido!
+        </div>
+    </div>
+          
+              <div class="form-group row">
+                  <label name="email" class="col-sm-1 col-form-label">E-mail :</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" formControlName="email" placeholder="ejemplo@dominio.com">
+                  </div>
+                  
+                  <div class="alert alert-danger" role="alert" *ngIf="myForm.get('email').invalid && myForm.get('email').touched ">
+                      ¡Correo no valido!
+                  </div>
+              </div>  
+          
+    
+<br>
+<br>
+    <div class="row justify-content-center">
+      <div class="col-4">
+          <button type="submit" class='btn btn-success' [disabled]="myForm.invalid">
+              <span class='fa fa-save'> </span> Guardar
+            </button>
+      </div>
+    </div>
+
+  </form>

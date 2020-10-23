@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "layout-1fe54"
+  },
+  "targets": {
+    "layout-1fe54": {
+      "hosting": {
+        "layout2": [
+          "layout-1fe54"
+        ]
+      }
+    }
+  }
+}

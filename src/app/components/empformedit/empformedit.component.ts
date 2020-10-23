@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
 
@@ -19,18 +19,21 @@ export class EmpformeditComponent implements OnInit {
   }
   //name: string;       //form builder didnt need thiss.....better use model to form
   //puesto: string; //used in {{}} interpolation of template
-
-  url: string = "http://127.0.0.1:8000/api/Empleado/";   
-  url2: string = "http://127.0.0.1:8000/api/Maquina/";
+  apiurl: string = "https://novatechdpw2.000webhostapp.com/api/Empleado/";
+  //url: string = "http://127.0.0.1:8000/api/Empleado/";   
+  //url2: string = "http://127.0.0.1:8000/api/Maquina/";
   equipo:any;
 
-  constructor(    private formBuilder: FormBuilder , private http :HttpClient, private router2: ActivatedRoute ) {
-    this.empForm = this.formBuilder.group({id: '',nombre: '', puesto: ''})
-    //console.log("after firn build");
-
-   }
+  constructor(    private formBuilder: FormBuilder , private http :HttpClient,
+     private router2: ActivatedRoute, /*private alertService: AlertService*/ ) {   }
+  
+  
+  
   ngOnInit(): void {
     
+    this.empForm = this.formBuilder.group({
+      id: '',nombre:['',[Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+       puesto: ''})
 
       this.router2.queryParams.subscribe(async (params:Params)=>{
         console.log(params)
@@ -59,9 +62,11 @@ export class EmpformeditComponent implements OnInit {
 }
 postempleado(customerData)
   {
-    this.http.post(this.url,customerData).subscribe(data =>
-      {console.log(data);}, 
-      error =>{console.log(error);}
+    this.http.post(this.apiurl,customerData).subscribe(data =>
+      {console.log(data);
+      window.alert("Agregado correctamente")}, 
+      error =>{console.log(error);
+        window.alert("Error, consulte la consola")}
       );
   }
 
@@ -70,15 +75,16 @@ postempleado(customerData)
     console.log(idd); 
     
     //lara dont allow put/patch, better fix in store
-    this.http.post(this.url+idd, customerData).subscribe(data =>
-      {console.log(data);}, 
+    this.http.post(this.apiurl+idd, customerData).subscribe(data =>
+      {console.log(data);
+        window.alert("Elemento modificado correctamente")}, 
       error =>{console.log(error);}
       );
   }
 
   getEmpleado(index)
   { 
-    this.http.get(this.url+index).subscribe(data =>
+    this.http.get(this.apiurl+index).subscribe(data =>
       {console.log(data);
         this.empForm.get("name").setValue(data)
         //this.empm.name =
@@ -107,5 +113,9 @@ postempleado(customerData)
       //}
     
 
+  }
+
+  successalert(message: string){
+    //this.alertService.success("elemento agregado con éxito");
   }
 }
