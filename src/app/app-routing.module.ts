@@ -10,6 +10,8 @@ import { EmpformeditComponent } from './components/empformedit/empformedit.compo
 import { TurnoslistComponent } from './components/turnoslist/turnoslist.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrousuarioComponent } from './components/registrousuario/registrousuario.component';
+import { ReportemedicoComponent } from './components/reportemedico/reportemedico.component';
+import { ReportesingleComponent } from './components/reportesingle/reportesingle.component';
 const routes: Routes = [
 
 {path: 'list', component: List1Component},
@@ -19,7 +21,9 @@ const routes: Routes = [
 {path: 'listequip', component:ListequiposComponent},
 {path: 'turnosform',component:TurnoslistComponent},
 {path: 'login', component:LoginComponent},
-{path: 'registry', component: RegistrousuarioComponent}
+{path: 'registry', component: RegistrousuarioComponent},
+{path: 'reportes', component:ReportemedicoComponent},
+{path: 'reportem', component:ReportesingleComponent}
 ];
 
 @NgModule({

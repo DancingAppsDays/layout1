@@ -7,8 +7,9 @@
 
  <a class="site" href="{{ brew.website_url }}">site</a> from brewereies sites
 -->
-<h1>Lista de empleados</h1>
+
 <!--
+  <h1>Lista de empleados</h1>
 <ul *ngIf="emps">     
   <li *ngFor="let ems of emps">
     <p class="name">{{ ems.id }}</p>
@@ -17,7 +18,29 @@
     <p class="country">{{ ems.created_at }}</p>
    
   </li>
-</ul>--><table class="table" *ngIf="emps">
+</ul>-->
+<div class="container">
+  <div class="form-group row">
+    <div class="col-sm text-center">
+      <h4 class="d-block" style="background-color: #34495E; color:#fff; margin: 15px;">Lista de empleados</h4>
+    </div>
+  </div>
+
+   <!--
+  <div class="card text-center m-3">
+    <h3 class="card-header">Angular 8 Pagination Example</h3>
+    <div class="card-body">
+        <div *ngFor="let item of pageOfItems">{{item.name}}</div>
+    </div>
+    <div class="card-footer pb-0 pt-3">
+        <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+    </div>
+</div>-->
+
+
+<input type="text" [(ngModel)]="term">Buscar nombre
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<table class="table" *ngIf="emps">
   <thead>
     <tr>
       <th scope="col">item</th>
@@ -28,13 +51,21 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let ems of emps">
+    <!--<tr *ngFor="let ems of emps ">-->
+      <tr *ngFor="let ems of items[0]  | filter : term | paginate: { itemsPerPage: 10, currentPage: p }"> 
+    
+               
+    
+    
+
       <th scope="row">{{ ems.id }}</th>
       <td>{{ ems.nombre }}</td>
       <td>{{ ems.puesto }}</td>
       <td>{{ ems.created_at }}</td>
       <td> <button type="button" class="btn btn-primary" title="Editar" (click)="editEmps(ems)">Editar</button> </td>
       <td> <button type="button" class="btn btn-primary" title="Turnos" (click)="gototurnos(ems)">Turnos</button> </td>
+      <td> <button type="button" class="btn btn-primary" title="Reportes" (click)="gotoreportes(ems)">Reporte médico</button> </td>
     </tr>
   </tbody>
 </table>
+

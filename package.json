@@ -22,13 +22,18 @@
     "@angular/router": "^10.1.5",
     "@popperjs/core": "^2.5.3",
     "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.4",
     "firebase": "^7.23.0",
     "jquery": "^3.5.1",
+    "jw-angular-pagination": "^1.2.0",
+    "ng2-charts": "^2.4.2",
+    "ng2-search-filter": "^0.5.1",
+    "ngx-pagination": "^5.0.0",
+    "popper.js": "^1.12.9",
     "rxjs": "~6.6.0",
     "rxjs-compat": "^6.6.3",
     "tslib": "^2.0.3",
-    "zone.js": "~0.10.2",
-    "popper.js": "^1.12.9"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/architect": "^0.1001.6",

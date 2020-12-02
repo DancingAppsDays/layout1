@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="form-group row">
+      <div class="col-sm text-center">
+        <h4 class="d-block" style="background-color: #34495E; color:#fff; margin: 15px;">Reporte estado salud</h4>
+      </div>
+    </div>
+
+
+    <table class="table" *ngIf="eqs">
+
+      <thead>
+        <tr>
+          <th scope="col">IDReporte</th>
+          <th scope="col">Nombre Empleado</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Azucar</th>
+          <th scope="col">Colesterol</th>
+          <th scope="col">PresiónA</th>
+          <th scope="col">PresiónB</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let ems of eqs">
+          <th scope="row">{{ ems.id }}</th>
+          <td>{{ querid.nombre }}</td>
+          <td>{{ ems.fecha }}</td>
+          <td>{{ ems.azucar}}</td>
+          <td>{{ ems.colesterol }}</td>
+          <td>{{ ems.presionA }}</td>
+          <td>{{ ems.presionB }}</td>
+         </tr>
+      </tbody>
+       
+    </table>
+
+
+    <div class="chart-wrapper">
+      <canvas baseChart 
+          [datasets]="lineChartData" 
+          [labels]="lineChartLabels" 
+          [options]="lineChartOptions"
+          [colors]="lineChartColors" 
+          [legend]="lineChartLegend" 
+          [chartType]="lineChartType" 
+          [plugins]="lineChartPlugins">
+      </canvas>
+  </div>
+    <!--
+    <p>IDEmpleado</p> {{eq.  }}
+
+    <p>IDReporte</p> {{  }}
+
+    <p>Colesterol</p> {{  }}
+
+    <p>Axucar</p> {{  }}-->

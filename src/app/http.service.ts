@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 //import 'rxjs/add/operator/map';       //cmooonJS or AMD depencdencias cause optimization bailouts...
 import {map} from "rxjs/operators";
+import { Constantes } from './constantes';
 
 import { LoginObject } from './models/login-object';
 import { Session } from './models/session';
@@ -15,9 +16,13 @@ import { Userinterface } from './userinterface';
 })
 export class HttpService {
 
-backen: string = "https://novatechdpw2.000webhostapp.com/api/";
+backenyy: string = "https://novatechdpw2.000webhostapp.com/api/";
 //local
-exbacken: string = "http://127.0.0.1:8000/api/";
+backenxxx: string = "http://127.0.0.1:8000/api/";
+backenz: string = "http://realidad-virtual.amc-sc.mx/api/"; //https?
+
+backen : string = Constantes.capiURL;
+
 
    // apiurl: string = "https://novatechdpw2.000webhostapp.com/api/";
   url2: string =  this.backen + "Empleado/";
@@ -34,7 +39,13 @@ sucessdata: any;    //for auth registro
 submitted = false;
 
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+
+    if(localStorage.getItem('token') === null){
+      localStorage.setItem("token","_");     //    proper place for init empty token?
+    }
+
+   }
 
   method1()
   {
@@ -46,19 +57,27 @@ submitted = false;
    //return this.http.get('https://api.openbrewerydb.org/breweries');
     //return this.http.get('localhost:8000/api/Empleado');
     //return this.http.get('127.0.0.1:8000/api/Maquina');
-    return this.http.get(this.url2);//,{ headers: { Authorization:localStorage.getItem('Token') } });// +"Empleado/");//this.url2);
+    return this.http.get(this.url2,  { headers: { Authorization:localStorage.getItem('token'), 'Accept': 'application/json',
+    'Content-Type': 'application/json', } });
+    // +"Empleado/");//this.url2);
+
+    //headers: {
+      //'Accept': 'application/json',
+     // 'Content-Type': 'application/json',
+    //},
+
   }
   getequips()
   {                                             //data, {header}                                  //jwtTolen
-    return this.http.get(this.backen +"Maquina/",{ headers: { Authorization:localStorage.getItem('Token') } })
+    return this.http.get(this.url3,{ headers: { Authorization:localStorage.getItem('token') } })
 
 
   }
 
   
   registraruser(data)
-  {
-    return this.http.post(this.backen + "Registro/", data).subscribe(
+  {                                           //was Reg/ pero trailing slash mandaba a get-index... en lav8
+    return this.http.post(this.backen + "Registro", data).subscribe(
 
         (res:Response) =>{
 
@@ -67,8 +86,8 @@ submitted = false;
 
         window.alert("Usuario registrado con éxito")
 
-                let token = res['data']['name'];  //res.data.acces.... not
-                localStorage.setItem("Token",'Bearer' +token);
+                let token = res['data']['token'];  //res.data.acces.... not
+                localStorage.setItem("token",'Bearer' +token);
 
                 console.log("TOken = " + token);
               //this.htt.defaults.headers.common['Authorization'] = ' Bearer' +token;
@@ -76,7 +95,10 @@ submitted = false;
 
 
 
-          }else console.log("Registro fallo!" + this.sucessdata)
+          }else {
+           
+            console.log("Registro fallo!" + this.sucessdata)
+            window.alert("Registro fallo! " + this.sucessdata['message'])}
         }
 
 

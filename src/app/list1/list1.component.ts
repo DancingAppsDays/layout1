@@ -14,15 +14,30 @@ import { Router } from '@angular/router';
 })
 export class List1Component implements OnInit {
 
+   token: string;
   sucessdata:any;
   //emps:any;
+  term: string = '';
+  p: number = 1;
+  items = [];       //pagination jw
+    pageOfItems: Array<any>;
+    onChangePage(pageOfItems: Array<any>) {
+      // update current page of items
+      this.pageOfItems = pageOfItems;
+  }
+
+
   
   constructor(private _http:  HttpService,private router:Router ) { }
 
    //empsarray:any = [];
   ngOnInit(): void {
 
-    //const token: string = localStorage.getItem('Token');
+    // = localStorage.getItem('token');
+    //window.alert(token
+    //if(localStorage.getItem('token') === null)
+    //{}else
+     //this.token = localStorage.getItem('token');
     //window.alert(token);
     
     this._http.getempleados().subscribe(
@@ -34,19 +49,31 @@ export class List1Component implements OnInit {
       
         
 
-      { //this.sucessdata = result;
-
-        //if(this.sucessdata['status'] == "success"){
+      { 
+        //
+        this.sucessdata = result;
+        if(this.sucessdata['status'] == "success"){
 
      // window.alert("Datos recuperados  con éxito con sesion");
         
         //this.emps =result.json();
-        this.emps = result;//this.sucessdata;//data;
+        this.emps = this.sucessdata['dat'];         // result;//this.sucessdata;//data;
+        
+        //this.emps.push(data);  
+          this.items.push(this.emps);
+        
         /*data.forEach(item => {
           this.emps.next(item);
         });*/
         //this.emps = this.empsarray.json();
-        console.log(this.emps);//}
+        console.log(this.items);//}}
+       
+      }else {
+        window.alert(this.sucessdata['data'] + '    No autorizado');
+        this.router.navigate(['/']);
+        //window.alert("Datos no pudieron ser recuperados");
+
+      }
         //else  window.alert(this.sucessdata['data'] + "->  Error sesion no iniciada");
       });
   }
@@ -70,6 +97,19 @@ export class List1Component implements OnInit {
       }
 
   })
+}
+
+  gotoreportes(equipo:any){
+    this.router.navigate(['reportes'],{
+      queryParams:{
+        id:equipo.id,
+        nombre:equipo.nombre
+      }
+
+  })
+
+
+
 }
 
 

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.leftBorderDiv
+{    
+       border-left: 11px solid gray;
+       padding-left: 22px;
+}
+.main-navigation .menu > li > a {
+    border-right: 111px solid #000000;
+}
+
+.main-navigation .menu > li:last-child > a {
+    border-right:33;
+}

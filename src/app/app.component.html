@@ -6,26 +6,28 @@
 <!-- * * * * * * * * * Delete the template below * * * * * * * * * * -->
 <!-- * * * * * * * to get started with your project! * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!--Navbar did not wok??-->
+<!--Navbar did not wok??--> <!---->
 
 <header>
   
-  <div class="container">
-    <a routerLink="/" class="logo">MAXION VIRTUAL LAYOUT</a>
-    <nav class="navbar navbar-default">
-      <ul>
-        <li><a href="#" routerLink="/">Home</a></li>
-        <li><a href="#" routerLink="/list">ListaEmpleados</a></li>
-        <li><a href="#" routerLink="/listequip">ListaEquipos</a></li>
-        <li><a href="#" routerLink="/equipos">Equipos</a></li>
-        <li><a href="#" routerLink="/empform">Empleados</a></li>
-        <!--<li><a href="#" routerLink="/up1">FileUpload1</a></li>-->
-        <li><a href="#" routerLink="/login">Login</a></li>
-        <li><a href="#" routerLink="/registry">Registrar usuario</a></li>
-      </ul>
-    </nav>
-  </div>
-
+  
+  
+    <div class="container">
+      <a routerLink="/" class="logo">MAXION VIRTUAL LAYOUT</a>
+      <nav class="navbar  navbar-light bg-light navbar-fixed-top" name="menu">
+        <ul  class="nav navbar-nav ">
+          <li class="divider"><a href="#" routerLink="/login">Login  </a></li>
+          <li class="divider"><a href="#" routerLink="/registry">Registrar usuario  </a></li>
+          
+          <li class="divider"><a href="#" routerLink="/list">ListaEmpleados  </a></li>
+          <li class="divider"><a href="#" routerLink="/listequip">ListaEquipos  </a></li>
+          <li class="divider"><a href="#" routerLink="/equipos">RegistrarEquipo  </a></li>
+          <li class="divider"><a href="#" routerLink="/empform">RegistrarEmpleado  </a></li>
+          <!--<li><a href="#" routerLink="/up1">FileUpload1</a></li>-->
+          
+        </ul>
+      </nav>
+    </div>
   
 <!--
 
@@ -65,6 +67,7 @@
       </div>
     </nav>-->
   </header>
+ 
   
   <div class="container">
     <router-outlet></router-outlet>
@@ -77,7 +80,6 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 
 <router-outlet></router-outlet>

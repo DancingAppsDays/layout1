@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Empleado } from 'src/app/models/empleado';
+import {Constantes}  from 'src/app/constantes';   //global apirul
 
 @Component({
   selector: 'app-empformedit',
@@ -18,13 +19,18 @@ export class EmpformeditComponent implements OnInit {
 
   }
   //name: string;       //form builder didnt need thiss.....better use model to form
-  //puesto: string; //used in {{}} interpolation of template
-  apiurl: string = "https://novatechdpw2.000webhostapp.com/api/Empleado/";
+  //puesto: string; //used in {{}} interpolation of template      
+                                                                  //+ /id added, para prevenir indexx
+  apiurlzzz: string = "https://novatechdpw2.000webhostapp.com/api/Empleado";
+  apiurlxxx: string ="http://127.0.0.1:8000/api/Empleado";
+  apiurlyyy: string = "http://realidad-virtual.amc-sc.mx/api/Empleado";
+
+  apiurl: string = Constantes.capiURL+"Empleado/";
   //url: string = "http://127.0.0.1:8000/api/Empleado/";   
   //url2: string = "http://127.0.0.1:8000/api/Maquina/";
   equipo:any;
 
-  constructor(    private formBuilder: FormBuilder , private http :HttpClient,
+  constructor(    private formBuilder: FormBuilder ,private router: Router,  private http :HttpClient,
      private router2: ActivatedRoute, /*private alertService: AlertService*/ ) {   }
   
   
@@ -62,12 +68,24 @@ export class EmpformeditComponent implements OnInit {
 }
 postempleado(customerData)
   {
-    this.http.post(this.apiurl,customerData).subscribe(data =>
-      {console.log(data);
-      window.alert("Agregado correctamente")}, 
-      error =>{console.log(error);
-        window.alert("Error, consulte la consola")}
-      );
+    this.http.post(this.apiurl,customerData,  { headers: { Authorization:localStorage.getItem('token') } }).subscribe(data =>
+      {
+        if(data['status'] == "success"){
+
+        console.log(data);
+      window.alert(data['data']);   //debe decir agregadooo
+      this.router.navigate(['/']);}else{
+
+        window.alert(data['data']);// + '    No autorizado');
+        this.router.navigate(['/']);
+
+      }/*
+    }, 
+      error =>{
+        console.log(error);
+        window.alert("Error: "+ error);
+      }*/
+    });
   }
 
   putempleado(customerData,idd: number)
@@ -75,9 +93,10 @@ postempleado(customerData)
     console.log(idd); 
     
     //lara dont allow put/patch, better fix in store
-    this.http.post(this.apiurl+idd, customerData).subscribe(data =>
+    this.http.post(this.apiurl+'/'+idd, customerData).subscribe(data =>
       {console.log(data);
-        window.alert("Elemento modificado correctamente")}, 
+        window.alert("Elemento modificado correctamente");
+        this.router.navigate(['/']);}, 
       error =>{console.log(error);}
       );
   }

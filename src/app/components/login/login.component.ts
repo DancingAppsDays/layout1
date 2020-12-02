@@ -6,6 +6,8 @@ import { HttpService } from 'src/app/http.service';
 import { LoginObject } from 'src/app/models/login-object';
 import { Session } from 'src/app/models/session';
 
+import {Constantes}  from 'src/app/constantes';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,8 +19,17 @@ export class LoginComponent implements OnInit {
   public loginsubmitted: Boolean = false;
   public error: {code: number, message: string} = null;
 
-  public apirul = "http://localhost:8000/api/Login";
-  public apirul2 = "http://localhost:8000/api/Logout";
+  public apirulxxx = "http://localhost:8000/api/Login";
+  public apirul2xx= "http://localhost:8000/api/Logout";
+
+  public apiuryyy = "https://novatechdpw2.000webhostapp.com/api/"
+  public apiurz: string = "http://realidad-virtual.amc-sc.mx/api/";
+  
+
+  apiur = Constantes.capiURL;
+  apirul = this.apiur+"Login";
+  apirul2 = this.apiur+"Logout";
+
   public successdata: any;  //made it miself
 
   get ff(){
@@ -38,13 +49,15 @@ export class LoginComponent implements OnInit {
 
   onLogoutSubmit(){
 
-    return this.htt.post(this.apirul2,this.loginsubmitted).subscribe((res: Response) => {
+    return this.htt.post(this.apirul2,this.loginsubmitted,{ headers: { Authorization:localStorage.getItem('token') } }).subscribe((res: Response) => {
       this.successdata = res;
       
       if(this.successdata['status'] == "success")
-      //{
-          window.alert("Cerro sesion");//this.successdata['data']['name']+" has been Login successfully");
-      //}
+      {      window.alert("Usuario " + sessionStorage.name + " cerró sesion");
+          localStorage.clear();
+          sessionStorage.clear();
+         //this.successdata['data']['name']+" has been Login successfully");
+      }
       else  
       console.log(res);
       //window.alert("unknown erorr at lougout");
@@ -89,8 +102,13 @@ export class LoginComponent implements OnInit {
             window.alert(this.successdata['data']['name']+" has been Login successfully");
             
             let token = res['data']['token'];  //res.data.acces.... not
-            localStorage.setItem("Token",'Bearer' +token);
-            console.log("Tooken = " + token);
+            localStorage.setItem("token",'Bearer' +token);
+
+            sessionStorage.setItem("name",this.successdata['data']['name']);
+            sessionStorage.setItem("session","true");                       //experimental sess
+
+            //console.log("Tooken = " + token);
+            //window.alert(localStorage.getItem('token'));
             //this.htt.defaults.headers.common['Authorization'] = ' Bearer' +token;
             this.router.navigate(['/']);
             
@@ -104,7 +122,7 @@ export class LoginComponent implements OnInit {
         }else 
         if(this.successdata['status'] == "error")
         {
-          window.alert("Datos de login incorrectos");
+          window.alert(this.successdata['error']);//"Datos de login incorrectos");
          /* Swal.fire({
           title: 'OPPS!!',
           text:   "Login details are not coreect.",

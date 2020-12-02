@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import {Constantes}  from 'src/app/constantes';
 
 @Component({
   selector: 'app-equipos',
@@ -13,9 +14,11 @@ export class EquiposComponent implements OnInit {
   equipForm: FormGroup;
  equipo: any;
  
-  url: string = "https://novatechdpw2.000webhostapp.com/api/Maquina/";//"http://127.0.0.1:8000/api/Maquina/";
-
-  constructor( private formBuilder: FormBuilder , private http :HttpClient , private router2: ActivatedRoute) {
+ url: string = Constantes.capiURL + "/Maquina";
+ urlxxx: string ="http://127.0.0.1:8000/api/Maquina";
+  urlzzzz: string = "https://novatechdpw2.000webhostapp.com/api/Maquina";//"http://127.0.0.1:8000/api/Maquina/";
+ urlyy: string = "http://realidad-virtual.amc-sc.mx/api/Maquina";
+  constructor( private formBuilder: FormBuilder , private http :HttpClient , private router: Router, private router2: ActivatedRoute) {
 
     this.equipForm = this.formBuilder.group({id:'',nombre: '', puesto: ''})
 
@@ -48,11 +51,22 @@ export class EquiposComponent implements OnInit {
 }
 postequip(customerData)
   {
-    this.http.post(this.url,customerData).subscribe(data =>
-      {console.log(data);
-        window.alert("Elemento agregado correctamente")}, 
-      error =>{console.log(error);
-        window.alert("Error,consulte consola")}
+    this.http.post(this.url,customerData,  { headers: { Authorization:localStorage.getItem('token') } }).subscribe(data =>
+      {
+        if(data['status'] == "success"){
+
+        console.log(data);
+        window.alert("Elemento agregado correctamente");
+        this.router.navigate(['/']);
+      }else{
+        window.alert(data['data']);
+        this.router.navigate(['/']);
+      }/*
+    }, 
+      error =>{
+        console.log(error);
+         window.alert("Error al agregar:"+error);// ,consulte consola");*/
+      }
       );
   }
 
@@ -61,11 +75,13 @@ postequip(customerData)
     console.log(idd); 
     
     //lara dont allow put/patch, better fix in store
-    this.http.post(this.url+idd, customerData).subscribe(data =>
+    this.http.post(this.url+'/'+idd, customerData).subscribe(data =>
       {console.log(data);
-        window.alert("Elemento modificado correctamente")}, 
+        window.alert("Elemento modificado correctamente");
+        this.router.navigate(['/']);
+      }, 
       error =>{console.log(error);
-        window.alert("Error,consulte consola")}
+        window.alert("Error al modificar, consulta la consola")}
       );
   }
 

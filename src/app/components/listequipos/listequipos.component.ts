@@ -15,6 +15,7 @@ export class ListequiposComponent implements OnInit {
   created_at: string = '';
   name: string = '';
   puesto: string = '';
+  sucessdata:any;
 
   constructor(private _http: HttpService,private router:Router) {
 
@@ -23,7 +24,16 @@ export class ListequiposComponent implements OnInit {
   ngOnInit(): void {
 
     this._http.getequips().subscribe(data => {
-      this.eqs = data;
+
+      this.sucessdata = data;
+      if(this.sucessdata['status'] == "success"){
+
+      this.eqs = this.sucessdata['dat'];
+      }else{
+        window.alert(this.sucessdata['data']);// + '    No autorizado');
+        this.router.navigate(['/']);
+
+      }
     })
   }
 

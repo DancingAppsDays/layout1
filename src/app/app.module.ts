@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';      //IMPORTANT IMPORT
-
-
-
+//import {JwPaginationComponent} from 'jw-angular-pagination'; -> ngcc troubles
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +24,9 @@ import { RegistrousuarioComponent } from './components/registrousuario/registrou
 import { LoginComponent } from './components/login/login.component';
 import { UserComponent } from './models/user/user.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { ReportemedicoComponent } from './components/reportemedico/reportemedico.component';
+import { ReportesingleComponent } from './components/reportesingle/reportesingle.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     TurnoslistComponent,
     RegistrousuarioComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    ReportemedicoComponent,
+    ReportesingleComponent,//,
+    //JwPaginationComponent
     
   ],
   imports: [
@@ -46,7 +52,11 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     AppRoutingModule,
     FormsModule,                   //added for 2binding
     HttpClientModule,                        //IMPORTANT IMPORT
-    ReactiveFormsModule     //maybeeee
+    ReactiveFormsModule,     //maybeeee
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
+    ChartsModule
+    //JwPaginationComponent
   ],
   providers: [
     {

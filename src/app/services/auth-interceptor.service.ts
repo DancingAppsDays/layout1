@@ -13,7 +13,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
 
-      const token: string = localStorage.getItem('Token');
+      const token: string = localStorage.getItem('token');
 
     let request = req;
 
@@ -25,6 +25,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         //estaba en minuscula y
                                 //did it broke?? 
         setHeaders:{
+           //'Accept'       : 'application/json',   //was 'Accept'
           Authorization: 'Bearer '+token //${ this.token }'
         }
 

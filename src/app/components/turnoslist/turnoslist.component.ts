@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Constantes } from 'src/app/constantes';
 
 @Component({
   selector: 'app-turnoslist',
@@ -9,7 +10,11 @@ import { ActivatedRoute, Params } from '@angular/router';
 })
 export class TurnoslistComponent implements OnInit {
 
-  url: string = "https://novatechdpw2.000webhostapp.com/api/Turno/";//"http://127.0.0.1:8000/api/Turno/";
+  url = Constantes.capiURL + "Turno/";
+
+  urlzz: string = "https://novatechdpw2.000webhostapp.com/api/Turno/";
+  urlxxxx: string = "http://127.0.0.1:8000/api/Turno/";
+  urlyy: string = "http://realidad-virtual.amc-sc.mx/api/Turno";
   eqs: any;
   querid: any;
   id: string = '';
@@ -25,7 +30,7 @@ export class TurnoslistComponent implements OnInit {
       console.log(params.id);
       this.querid=params;
      
-      console.log(this.querid.id);
+      //console.log(this.querid.id);
 
     })
 

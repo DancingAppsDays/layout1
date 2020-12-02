@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { HttpService } from 'src/app/http.service';
 import { Userinterface } from 'src/app/userinterface';
 
+
+
 @Component({
   selector: 'app-registrousuario',
   templateUrl: './registrousuario.component.html',
@@ -35,8 +37,8 @@ export class RegistrousuarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.myForm = this.fb.group({
-      //fecha: '',
-      //hora: '',
+      //fecha: this.today,
+     // hora: '',
       name: ['', [
         Validators.required,
         Validators.pattern('^[a-zA-Z ]*$')
