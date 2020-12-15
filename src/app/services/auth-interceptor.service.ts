@@ -4,9 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()//({  providedIn: 'root'})
 export class AuthInterceptorService implements HttpInterceptor {
 
   constructor(private router: Router) { }
@@ -33,7 +31,7 @@ export class AuthInterceptorService implements HttpInterceptor {
 
     }
     //return  next.handle(request);
-      return next.handle(request).pipe(
+      return next.handle(request);/*.pipe(
         
        catchError((err: HttpErrorResponse) =>{
       
@@ -45,7 +43,7 @@ export class AuthInterceptorService implements HttpInterceptor {
         return throwError( err);
         
       })
-      );
+      );*/
   }
 
 

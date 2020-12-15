@@ -5,7 +5,8 @@ import { HttpService } from '../http.service';
 
 import {map} from 'rxjs/operators';
 import { Router } from '@angular/router';
-
+import { HttpClient } from '@angular/common/http';
+import { Constantes } from 'src/app/constantes';
 
 @Component({
   selector: 'app-list1',
@@ -28,7 +29,7 @@ export class List1Component implements OnInit {
 
 
   
-  constructor(private _http:  HttpService,private router:Router ) { }
+  constructor(private _http:  HttpClient,private router:Router ) { }
 
    //empsarray:any = [];
   ngOnInit(): void {
@@ -40,7 +41,7 @@ export class List1Component implements OnInit {
      //this.token = localStorage.getItem('token');
     //window.alert(token);
     
-    this._http.getempleados().subscribe(
+    this._http.get(Constantes.capiURL).subscribe(
       
      
 
